@@ -8,7 +8,7 @@
   </div>
   <!-- /.card-header -->
   <!-- form start -->
-  <form action="" method="POST">
+  <form action="" method="POST" enctype="multipart/form-data">
     @csrf
     <div class="card-body">
       <div class="form-group">
@@ -19,12 +19,22 @@
         @endif
       </div>
       <div class="form-group">
+        <label for="product_nama">Image</label>
+        <div class="custom-file">
+          <input type="file" name="product_image" class="custom-file-input" id="inputGroupFile02" aria-describedby="inputGroupFileAddon01" @if(!empty($products)) value="{{ $products->image}}" @else value="{{ old('product_image') }}" @endif>
+          <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+        </div>
+      </div>
+      @if(!empty($errors->first('product_image')))
+      <p class="text-red"><i class="icon fa fa-ban"></i> {{ $errors->first('product_image') }}</p>
+      @endif
+      <!-- <div class="form-group">
         <label for="exampleInputPassword1">Image</label>
         <input type="text" name="product_image" class="form-control" @if(!empty($products)) value="{{ $products->image}}" @else value="{{ old('product_image') }}" @endif>
         @if(!empty($errors->first('product_image')))
         <p class="text-red"><i class="icon fa fa-ban"></i> {{ $errors->first('product_image') }}</p>
         @endif
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="product_harga">Harga</label>
         <input type="text" name="product_harga" class="form-control" @if(!empty($products)) value="{{ $products->harga}}" @else value="{{ old('product_harga') }}" @endif>

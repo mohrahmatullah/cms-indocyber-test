@@ -12,6 +12,7 @@
     <table id="example1" class="table table-bordered table-striped">
       <thead>
       <tr>
+        <th>No</th>
         <th>Nama Product</th>
         <th>Image</th>
         <th>Harga</th>
@@ -22,8 +23,11 @@
       <tbody>
         @foreach($products as $p)
         <tr>
+          <td>{{ $loop->iteration }}</td>
           <td>{{ $p->nama_produk }}</td>
-          <td>{{ $p->image }}</td>
+          <td>
+            <img src="{{url(env('URL_MEDIA').'/uploads/'.$p->image)}}" width="75px" height="75px">
+          </td>
           <td>{{ $p->harga }}</td>
           <td>{{ $p->stock }}</td>
           <td>
@@ -48,6 +52,7 @@
       </tbody>
       <tfoot>
       <tr>
+        <th>No</th>
         <th>Nama Product</th>
         <th>Image</th>
         <th>Harga</th>

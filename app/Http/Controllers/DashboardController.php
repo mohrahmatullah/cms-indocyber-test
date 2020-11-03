@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Session;
 use Validator;
+use Illuminate\Support\Facades\Storage;
+use File;
 
 class DashboardController extends Controller
 {
@@ -76,22 +78,32 @@ class DashboardController extends Controller
         else{
 
             if($id == 0 ){
-              $p        =  new Product; 
+                $p        =  new Product; 
 
-              $p->nama_produk                 = $request->product_nama;
-              $p->image            = $request->product_image;
-              $p->harga            = $request->product_harga;
-              $p->stock              = $request->product_stock;
-              $p->save();
+                $cover = $request->file('product_image');
+                $extension = $cover->getClientOriginalExtension();
+                Storage::disk('public')->put($cover->getClientOriginalName(),  File::get($cover));
+
+                $p->nama_produk                 = $request->product_nama;
+                // $file = $request->file('product_image');
+                // $path = Storage::disk('public')->put('uploads/'.date('FY'), $file);
+
+                $p->image                       = $cover->getClientOriginalName();
+                $p->harga                       = $request->product_harga;
+                $p->stock                       = $request->product_stock;
+                $p->save();
 
               Session::flash('success-message', "Success add banner" );
               return redirect()->route('products');
 
             }else{
+                $cover = $request->file('product_image');
+                $extension = $cover->getClientOriginalExtension();
+                Storage::disk('public')->put($cover->getClientOriginalName(),  File::get($cover));
 
               $data = array(
                 'nama_produk'                  => $request->product_nama,
-                'image'             => $request->product_image,
+                'image'             => $cover->getClientOriginalName(),
                 'harga'             => $request->product_harga,
                 'stock'               => $request->product_stock
               );
