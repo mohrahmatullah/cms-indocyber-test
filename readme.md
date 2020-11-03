@@ -36,14 +36,14 @@ How To Install this Project
 
 Silahkan Ujicoba test dengan mengakses link http://127.0.0.1:8000/
 
-Ketentuan :
+Ketentuan:
 
 Ini dengan akses 0 akan berhasil login
 
 			email : admin@email.com
 			password : 12345
 
-ini dengan akses 1 tidak akan berhasil
+ini dengan akses 1 tidak akan berhasil karena ketentuan dari soal
 
 			email : users@email.com
 			password : 12345
