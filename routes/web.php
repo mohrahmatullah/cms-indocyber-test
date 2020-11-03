@@ -51,6 +51,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 	route::get('products', 'DashboardController@index')->name('products');
 	route::get('products/{id}', 'DashboardController@productsUpdate')->name('update-products');
 	route::post('products/{id}', 'DashboardController@saveProducts')->name('save-products');
+  route::get('products/details/{id}', 'DashboardController@productsDetails')->name('view-products');
 });
 
 Route::post('/ajax/delete-item', 'AjaxController@selectedItemDeleteById')->name('selected-item-delete');

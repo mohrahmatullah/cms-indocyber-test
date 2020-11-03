@@ -28,6 +28,22 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function productsDetails($id = null)
+    {
+        $params = [];
+
+        $object = Product::where('id', $id)->first();
+        if(!$object)
+            {
+                return redirect()->route('products');
+            }
+
+        $params['products'] = $object;
+// $arr = get_defined_vars();
+//             dd($arr);
+        return view('admin.products.details', $params);
+    }
+
     public function productsUpdate($id = null)
     {
         $params = [];
