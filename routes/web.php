@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::resource('products', 'DashboardController');
+route::get('products', 'DashboardController@index')->name('products');
+route::get('products/{id}', 'DashboardController@productsUpdate')->name('update-products');
+route::post('products/{id}', 'DashboardController@saveProducts')->name('save-products');
+
+Route::post('/ajax/delete-item', 'AjaxController@selectedItemDeleteById')->name('selected-item-delete');

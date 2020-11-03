@@ -13,7 +13,13 @@
           @include('admin.includes.sidebar')
           <div class="content-wrapper">
             <section class="content">
-            @yield('content') 
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12">
+                    @yield('content') 
+                  </div>
+                </div>
+              </div>
             </section>         
           </div>
           @include('admin.includes.footer')

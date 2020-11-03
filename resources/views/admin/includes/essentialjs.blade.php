@@ -7,36 +7,38 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{url('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{{url('plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->
-<script src="plugins/sparklines/sparkline.js"></script>
+<script src="{{url('plugins/sparklines/sparkline.js')}}"></script>
 <!-- JQVMap -->
-<script src="plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{url('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
+<script src="{{url('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
 <!-- jQuery Knob Chart -->
-<script src="plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{{url('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
 <!-- daterangepicker -->
-<script src="plugins/moment/moment.min.js"></script>
-<script src="plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{url('plugins/moment/moment.min.js')}}"></script>
+<script src="{{url('plugins/daterangepicker/daterangepicker.js')}}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{url('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
 <!-- Summernote -->
-<script src="plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{url('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <!-- overlayScrollbars -->
-<script src="plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{url('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
-<script src="dist/js/adminlte.js"></script>
+<script src="{{url('dist/js/adminlte.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="dist/js/pages/dashboard.js"></script>
+<script src="{{url('dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="dist/js/demo.js"></script>
+<script src="{{url('dist/js/demo.js')}}"></script>
 <!-- DataTables -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="{{url('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{url('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+<script src="{{url('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
+<script src="{{url('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+<!-- Sweetalert -->
+<script src="{{url('sweetalert/sweetalert.min.js')}}"></script>
 <!-- page script -->
 <script>
   $(function () {
@@ -54,4 +56,61 @@
       "responsive": true,
     });
   });
+
+  function deleted_item( id, track )
+  {
+
+    var dataObj       = {};
+    dataObj.id        =  id;
+    dataObj.track     =  track;
+    if( id != null)
+    {
+      dataObj.id     =  id;
+    }
+    swal({
+      title: "Are you sure?",
+      text: "You will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonClass: "btn-danger",
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel plx!",
+      closeOnConfirm: false,
+      closeOnCancel: false
+    },
+    function(isConfirm) {
+      if (isConfirm) {
+          $.ajax({
+                url: '/ajax/delete-item',
+                type: 'POST',
+                cache: false,
+                datatype: 'json',
+                data: {data:dataObj},
+                headers: { 'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content') },
+                success: function(data)
+                {
+                  if(data.delete == true)
+                  {
+                    swal({
+                      title: 'Deleted',
+                      text: 'Your selected item deleted.',
+                      type: 'success',
+                      timer: 2000,
+                      showCancelButton: false,
+                      showConfirmButton: false
+                    },
+                    function(){ 
+                         location.reload();
+                     }
+                    );
+                  }                    
+                },
+                
+                error:function(){}
+          });            
+      } else {
+        swal("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    });
+  }
 </script>
