@@ -42,7 +42,8 @@
     </div>
     <!-- /.card-body -->
     <div class="card-footer">
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+      <a href="{{ route('products')}}" class="btn btn-secondary">Back</a>
     </div>
   </form>
 </div>
