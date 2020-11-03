@@ -1,72 +1,103 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+How To Install this Project
+1. Persiapan
+	- Memiliki CLI/Command Line Interface berupa Command Prompt (CMD) atau Power Shell atau Git Bash (selanjutnya kita sebut terminal).
+	- Memiliki Web Server (misal XAMPP) dengan PHP Minimal 7.0 PHP maximal versi 7.2.24 Karena project ini menggunakan framework laravel versi 5.8
+	- Composer telah ter-install, cek dengan perintah composer -V melalui terminal.
+	- Memiliki koneksi internet (untuk proses installasi).
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+2. Langkah-Langkah
+	- git clone https://github.com/mohrahmatullah/cms-indocyber-test.git Melalui terminal,
+	- Masuk ke direktori cms-indocyber-test melalui terminal dengan perintah cd cms-indocyber-test.
+	- (Sesuai petunjuk installasi) Pada terminal, berikan perintah composer install. Ini perlu koneksi internet.
+	- Composer akan menginstall dependency paket dari source code tersebut hingga selesai.
+	- Jalankan perintah php artisan, untuk menguji apakah perintah artisan Laravel bekerja.
+	- Buat database baru (kosong) pada mysql (via phpmyadmin) dengan nama cms-indocyber-test.
+	- Duplikat file .env.example, lalu rename menjadi .env.
+	- Kembali ke terminal, php artisan key:generate.
+	- Setting koneksi database di file .env (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
 
-## About Laravel
+		URL_MEDIA=http://127.0.0.1:8000
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+		DB_CONNECTION=mysql
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+		DB_HOST=localhost
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+		DB_PORT=3306
 
-## Learning Laravel
+		DB_DATABASE=cms-indocyber-test
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+		DB_USERNAME=root
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+		DB_PASSWORD=
 
-## Laravel Sponsors
+	- Run migrations (tables and Seeders) php artisan migrate --seed. Cek di phpmyadmin, seharusnya tabel dan isi nya sudah muncul.
+	- Setelah selesai, Jalankan perintah php artisan serve maka dapat diakses dengan http://127.0.0.1:8000/
+ 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Silahkan Ujicoba test dengan aplikasi POSTMAN, berikut link:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+1. GET STOCK 
 
-## Contributing
+	METHOD = GET
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+	URL = http://127.0.0.1:8000/api/klikdaily/stocks
 
-## Security Vulnerabilities
+2. ADJUST STOCK 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+	METHOD = POST
 
-## License
+	URL = http://127.0.0.1:8000/api/klikdaily/adjustment
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+	untuk adjust stock
+
+	- headers
+
+	key => Content-Type
+
+	value => application/json
+
+	- Body
+
+	Berikan Uji coba Test berikut : 
+	
+	Ini untuk test multiple request 
+
+			[
+				{
+				"location_id": 1,
+				"product": "Indomie Goreng",
+				"adjustment": -10
+				},
+				{
+				"location_id": 2,
+				"product": "Kopi",
+				"adjustment": 6
+				}
+			]
+
+	Ini untuk test satu request
+
+			[
+				{
+				"location_id": 1,
+				"product": "Indomie Goreng",
+				"adjustment": -10
+				}
+			]
+
+	Catatan dari soal:	
+	Apabila product pada request tidak sama dengan product yang tersimpan di lokasi yang
+	dipilih maka proses akan gagal atau invalid product.
+
+3. GET LOGS 
+
+	METHOD = GET
+
+	URL = http://127.0.0.1:8000/api/klikdaily/logs/{location_id}
+	
+	Example: http://127.0.0.1:8000/api/klikdaily/logs/1
+
+
+
+
+Terimakasih atas kesempatannya untuk mengikuti test skill pada Klikdaily
