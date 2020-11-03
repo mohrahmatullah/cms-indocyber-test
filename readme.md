@@ -14,7 +14,7 @@ How To Install this Project
 	- Buat database baru (kosong) pada mysql (via phpmyadmin) dengan nama cms-indocyber-test.
 	- Duplikat file .env.example, lalu rename menjadi .env.
 	- Kembali ke terminal, php artisan key:generate.
-	- Setting koneksi database di file .env (DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+	- Setting koneksi database di file .env (DB_DATABASE, DB_USERNAME, DB_PASSWORD) dan tambah kan (URL_MEDIA) ini untuk url image 
 
 		URL_MEDIA=http://127.0.0.1:8000
 
@@ -34,70 +34,19 @@ How To Install this Project
 	- Setelah selesai, Jalankan perintah php artisan serve maka dapat diakses dengan http://127.0.0.1:8000/
  
 
-Silahkan Ujicoba test dengan aplikasi POSTMAN, berikut link:
+Silahkan Ujicoba test dengan mengakses link http://127.0.0.1:8000/
 
-1. GET STOCK 
+Ketentuan :
 
-	METHOD = GET
+Ini dengan akses 0 akan berhasil login
 
-	URL = http://127.0.0.1:8000/api/klikdaily/stocks
+			email : admin@email.com
+			password : 12345
 
-2. ADJUST STOCK 
+ini dengan akses 1 tidak akan berhasil
 
-	METHOD = POST
-
-	URL = http://127.0.0.1:8000/api/klikdaily/adjustment
-
-	untuk adjust stock
-
-	- headers
-
-	key => Content-Type
-
-	value => application/json
-
-	- Body
-
-	Berikan Uji coba Test berikut : 
-	
-	Ini untuk test multiple request 
-
-			[
-				{
-				"location_id": 1,
-				"product": "Indomie Goreng",
-				"adjustment": -10
-				},
-				{
-				"location_id": 2,
-				"product": "Kopi",
-				"adjustment": 6
-				}
-			]
-
-	Ini untuk test satu request
-
-			[
-				{
-				"location_id": 1,
-				"product": "Indomie Goreng",
-				"adjustment": -10
-				}
-			]
-
-	Catatan dari soal:	
-	Apabila product pada request tidak sama dengan product yang tersimpan di lokasi yang
-	dipilih maka proses akan gagal atau invalid product.
-
-3. GET LOGS 
-
-	METHOD = GET
-
-	URL = http://127.0.0.1:8000/api/klikdaily/logs/{location_id}
-	
-	Example: http://127.0.0.1:8000/api/klikdaily/logs/1
+			email : users@email.com
+			password : 12345
 
 
-
-
-Terimakasih atas kesempatannya untuk mengikuti test skill pada Klikdaily
+Terimakasih atas kesempatannya untuk mengikuti test skill pada indocyber
