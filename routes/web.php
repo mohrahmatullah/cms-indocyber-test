@@ -11,31 +11,46 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::group(['namespace' => 'Auth'], function () {
+// Route::get( '/', [
+//     'uses' => 'AuthController@goToAdminLoginPage',
+//     'as'   => 'admin.login'
+//   ]);
+
+Route::group(['prefix' => '/'], function () {
   //admin login route
-  Route::get( '/bakpau982/me/login', [
+  Route::get( '/', [
     'uses' => 'AuthController@goToAdminLoginPage',
     'as'   => 'admin.login'
   ]);
-  Route::post( '/bakpau982/me/login' , [
+  Route::post( 'post-login' , [
     'uses' => 'AuthController@postAdminLogin',
     'as'   => 'admin.post_login'
   ]);  
   //admin logout route
-  Route::post( '/bakpau982/me/logout', [
+  Route::post( 'logout', [
     'uses' => 'AuthController@logoutFromLogin',
     'as'   => 'admin.logout'
   ]);
+
+  Route::get('register', [
+    'uses' => 'AuthController@registration',
+    'as'   => 'admin.register'
+  ]);
+
+  Route::post('register', [
+    'uses' => 'AuthController@userRegistration',
+    'as'   => 'admin.post_register'
+  ]);
 });
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
 	route::get('products', 'DashboardController@index')->name('products');
 	route::get('products/{id}', 'DashboardController@productsUpdate')->name('update-products');
 	route::post('products/{id}', 'DashboardController@saveProducts')->name('save-products');
-
-	Route::post('/ajax/delete-item', 'AjaxController@selectedItemDeleteById')->name('selected-item-delete');
 });
+
+Route::post('/ajax/delete-item', 'AjaxController@selectedItemDeleteById')->name('selected-item-delete');

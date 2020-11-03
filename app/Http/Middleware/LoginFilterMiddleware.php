@@ -31,8 +31,8 @@ class LoginFilterMiddleware
       //   }
       // }
        
-      if ( Session::has('kamibijak_admin') && ( $request->is('admin/login') || $request->is('admin/forgot-password') ) ) {
-        return redirect()->route('admin.home');
+      if ( Session::has('admin') && ( $request->is('admin/login') || $request->is('admin/forgot-password') ) ) {
+        return redirect()->route('/');
       }
       
       if ( Session::has('shopist_frontend_user_id') && ( $request->is('user/login') || $request->is('user/forgot-password') ) ) {
