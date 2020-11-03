@@ -52,6 +52,7 @@
         <th>Image</th>
         <th>Harga</th>
         <th>Stock</th>
+        <th>Action</th>
       </tr>
       </tfoot>
     </table>
