@@ -79,11 +79,20 @@ class DashboardController extends Controller
               'product_harga.required' => 'The product harga field is required.',
             ];
         }else{
-            $rules =  ['product_nama'  => 'required' , 'product_image' => 'required', 'product_harga' => 'required|numeric', 'product_stock' => 'required'];
-            $atributname = [
-              'product_nama.required' => 'The product name field is required.',
-              'product_harga.required' => 'The product harga field is required.',
-            ];            
+            $get_produk = Product::where('id', $id)->first();
+            if($get_produk->nama_produk == $request->product_nama){
+                $rules =  ['product_nama'  => 'required' , 'product_image' => 'required', 'product_harga' => 'required|numeric', 'product_stock' => 'required'];
+                $atributname = [
+                  'product_nama.required' => 'The product name field is required.',
+                  'product_harga.required' => 'The product harga field is required.',
+                ];                
+            }else{
+                $rules =  ['product_nama'  => 'required|unique:tbl_produk,nama_produk' , 'product_image' => 'required', 'product_harga' => 'required|numeric', 'product_stock' => 'required'];
+                $atributname = [
+                  'product_nama.required' => 'The product name field is required.',
+                  'product_harga.required' => 'The product harga field is required.',
+                ];
+            }           
         }
 
         $validator = Validator::make($data, $rules, $atributname);
