@@ -28,27 +28,32 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">
         @include('pages_message.notify-msg-error')
-        @include('pages_message.form-submit')
       </p>
 
       <form action="{{ route('admin.post_login') }}" method="post">
         @csrf
         <div class="input-group mb-3">
-          <input type="email" name="admin_login_email" class="form-control" placeholder="Email">
+          <input type="email" name="admin_login_email" class="form-control" placeholder="Email" value="{{ old('admin_login_email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
+        @if(!empty($errors->first('admin_login_email')))
+        <p class="text-red"><i class="icon fa fa-ban"></i> {{ $errors->first('admin_login_email') }}</p>
+        @endif
         <div class="input-group mb-3">
-          <input type="password" name="admin_login_password" class="form-control" placeholder="Password">
+          <input type="password" name="admin_login_password" class="form-control" placeholder="Password" value="{{ old('admin_login_password') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+        @if(!empty($errors->first('admin_login_password')))
+        <p class="text-red"><i class="icon fa fa-ban"></i> {{ $errors->first('admin_login_password') }}</p>
+        @endif
         <div class="row">
           <!-- /.col -->
           <div class="col-12">
