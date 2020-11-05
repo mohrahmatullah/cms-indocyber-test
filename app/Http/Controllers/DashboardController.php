@@ -19,6 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $data['products'] = Product::all();
+        $data['title_form'] = 'List Produk';
         return view('admin.products.index', $data);
         // return view('admin.products.index');
     }
@@ -39,6 +40,7 @@ class DashboardController extends Controller
             }
 
         $params['products'] = $object;
+        $params['title_form'] = 'Detail Product';
 // $arr = get_defined_vars();
 //             dd($arr);
         return view('admin.products.details', $params);

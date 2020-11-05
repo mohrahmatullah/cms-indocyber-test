@@ -16,7 +16,8 @@ class userSeed extends Seeder
 
         $user = [
 	        ['email' => 'admin@email.com', 'nama' => 'admin', 'password' => '12345', 'nohp' => '083876854003', 'alamat' => 'pandeglang', 'akses' => '0'],
-	        ['email' => 'users@email.com', 'nama' => 'users', 'password' => '12345', 'nohp' => '083876854003', 'alamat' => 'pandeglang', 'akses' => '1']
+	        ['email' => 'users@email.com', 'nama' => 'users', 'password' => '12345', 'nohp' => '083876854003', 'alamat' => 'pandeglang', 'akses' => '1'],
+            ['email' => 'rahmat@email.com', 'nama' => 'rahmat', 'password' => '12345', 'nohp' => '083876854003', 'alamat' => 'pandeglang', 'akses' => '1'],
 	    ];
 
 	    User::insert($user);
