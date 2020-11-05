@@ -18,7 +18,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $data['products'] = Product::all();
+        $data['products'] = Product::orderby('created_at', 'DESC')->get();
         $data['title_form'] = 'List Produk';
         return view('admin.products.index', $data);
         // return view('admin.products.index');
@@ -72,18 +72,18 @@ class DashboardController extends Controller
     {
         $data = $request->all();
         if($id == 0 ){
-            $rules =  ['product_nama'  => 'required|unique:tbl_produk,nama_produk' ,'product_image' => 'required', 'product_harga' => 'required', 'product_stock' => 'required'];
+            $rules =  ['product_nama'  => 'required|unique:tbl_produk,nama_produk' ,'product_image' => 'required|mimes:jpeg,png,jpg', 'product_harga' => 'required', 'product_stock' => 'required'];
             $atributname = [
               'product_nama.required' => 'The product name field is required.',
               'product_nama.unique' => 'The product name can not be the same.',
               'product_harga.required' => 'The product harga field is required.',
             ];
         }else{
-        $rules =  ['product_nama'  => 'required' , 'product_image' => 'required', 'product_harga' => 'required', 'product_stock' => 'required'];
-        $atributname = [
-          'product_nama.required' => 'The product name field is required.',
-          'product_harga.required' => 'The product harga field is required.',
-        ];
+            $rules =  ['product_nama'  => 'required' , 'product_image' => 'required', 'product_harga' => 'required|numeric', 'product_stock' => 'required'];
+            $atributname = [
+              'product_nama.required' => 'The product name field is required.',
+              'product_harga.required' => 'The product harga field is required.',
+            ];            
         }
 
         $validator = Validator::make($data, $rules, $atributname);
@@ -116,6 +116,7 @@ class DashboardController extends Controller
 
             }else{
                 $cover = $request->file('product_image');
+                // dd($cover);
                 $extension = $cover->getClientOriginalExtension();
                 Storage::disk('public')->put($cover->getClientOriginalName(),  File::get($cover));
 

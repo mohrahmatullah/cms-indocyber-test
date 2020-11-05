@@ -121,8 +121,7 @@ class AuthController extends Controller
           'user_reg_name'                  => 'required|unique:users,nama',
           'reg_email_id'                   => 'required|max:50|email|unique:users,email',
           'reg_password'                   => 'required|min:6',
-          'reg_password_confirmation'      => 'required|min:6|required_with:reg_password|same:reg_password',
-          'reg_telepon'      => 'required|numeric'
+          'reg_password_confirmation'      => 'required|min:6|required_with:reg_password|same:reg_password'
         ];
         $messages = [
           'user_reg_name.required' => 'Please fill name field'
