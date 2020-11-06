@@ -81,7 +81,7 @@
             <input type="text" name="reg_telepon" class="form-control" placeholder="Telepon" value="{{ old('reg_telepon')}}">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-user"></span>
+                <span class="fas fa-phone"></span>
               </div>
             </div>
           </div>
